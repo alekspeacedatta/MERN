@@ -1,12 +1,22 @@
 import { useState } from "react";
-
+import { useRegister } from "../customHooks/useRegister";
+import "../index.css"
 const Register = () => {
+
+    const { mutate: register } = useRegister();
+
     const [ name, setName ] = useState('');
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
-
+    const handleRegister = (( e : any ) => {
+        e.preventDefault();
+        register({name, email, password});
+        setName('');
+        setEmail('');
+        setPassword('');
+    })
     return (
-        <form >
+        <form onSubmit={handleRegister}>
             <section>
                 <label htmlFor="">Name: </label>
                 <input type="text" value={name} placeholder="enter your name" onChange={(e) => { setName(e.target.value) }} />

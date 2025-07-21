@@ -7,8 +7,14 @@
   .info{
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 30px;
   }
+}
+.products-container{
+  display: flex;
+  align-items: center;
+  gap: 40px;
 }
 form{
     display: flex;
@@ -54,6 +60,11 @@ form{
     button:hover{
         transform: scale(1.02);
     }
+}
+.forms{
+  display: flex;
+  align-items: flex-start;
+  gap: 40px;
 }
 form:hover{
   transform: scale(1.01);

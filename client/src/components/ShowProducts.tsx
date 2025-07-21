@@ -10,20 +10,22 @@ const ShowProducts = () => {
     if(error) return <p>return {error.message}</p>
 
     return (
-        <div className="products-container">
-            {products ? (
-                <h2>hello</h2>
+        <>
+            {products.length ? (
+                <h2>There is {products.length} product</h2>
             ) : ( 
                 <h2>there is no Product</h2>
             )}
-            {products.map((product : any) => (
-                <div className="product" key={product._id}>
-                    <h2>Product Name - {product.name ? product.name : 'user not found'}</h2>
-                    <p>Product Price - ${product.price}</p>
-                    <button onClick={() => {deleteProduct(product._id)}}>Delete User</button>
-                </div>
-            ))}
-        </div>
+            <div className="products-container">
+                {products.map((product : any) => (
+                    <div className="product" key={product._id}>
+                        <h2>Product Name - {product.name ? product.name : 'user not found'}</h2>
+                        <p>Product Price - ${product.price}</p>
+                        <button onClick={() => {deleteProduct(product._id)}}>Delete User</button>
+                    </div>
+                ))}
+            </div>
+        </>
     )
 }
 export default ShowProducts

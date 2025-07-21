@@ -46,3 +46,21 @@ export const fetchMessage = async () => {
         console.error(error);
     }
 }
+export const register = async (name: string, email: string, password: string) => {
+    try {
+        const res = await fetch('http://localhost:3000/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password
+            })
+        })
+        if(!res.ok) throw new Error("Register Res Is Not Ok");
+    } catch (error) {
+        console.error(error);
+    }
+}

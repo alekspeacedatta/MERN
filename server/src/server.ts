@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors'
 import { connectDB } from './config/db';
 import { ProductModel } from './models/Product';
-
+import { UserModel } from './models/User';
 const app = express();
 
 app.use(cors({
@@ -13,6 +13,24 @@ app.use(cors({
 app.use(express.json());
 
 
+app.post('/register', async (req, res) => {
+    try {
+        const { name, email, password } = req.body;
+
+        const exsistingUser = await UserModel.findOne({ email });
+        if(exsistingUser){
+            return res.status(400).json({ message: 'User already exsist' })
+        }
+        
+        const newUser = new UserModel({ name, email, password });
+        await newUser.save();
+
+        res.status(201).json({ message: 'User Created Successfully', user: newUser });
+    } catch (error) {
+        console.error(error)
+        res.status(500).json({ message: 'Error Registering User', error })
+    }
+})
 
 app.get('/', async (req, res) => {
     const products = await ProductModel.find();
