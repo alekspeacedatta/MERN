@@ -1,5 +1,5 @@
 import { useDeleteProduct } from "../customHooks/useDeleteProduct";
-import { useProducts } from "../customHooks/useUsers"
+import { useProducts } from "../customHooks/useProducts"
 
 const ShowProducts = () => {
     
