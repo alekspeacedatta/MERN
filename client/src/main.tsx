@@ -9,7 +9,6 @@ import ShowProducts from './components/ShowProducts';
 import AddProduct from './components/AddProduct';
 import Login from './components/Login';
 
-
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
