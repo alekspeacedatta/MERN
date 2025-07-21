@@ -1,14 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { addUser } from "../apiCalls";
+import { addProduct } from "../apiCalls";
 interface UserType {
     name: string,
-    age: string,
+    price: number,
 }
-export const useaddUser = () => {
+export const useaddProduct = () => {
     const queryClient = useQueryClient();
 
     return useMutation({
-        mutationFn: ({name, age} : UserType) => addUser(name, age),
+        mutationFn: ({name, price} : UserType) => addProduct(name, price),
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['users'] })
         },

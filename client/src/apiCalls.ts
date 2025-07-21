@@ -1,4 +1,4 @@
-export const fetchUsers = async () => {
+export const fetchProducts = async () => {
     try {
         const res = await fetch('http://localhost:3000');
         if(!res.ok) throw new Error("Fetch Users Res Is Not Ok");
@@ -8,7 +8,7 @@ export const fetchUsers = async () => {
         console.error(error);
     }
 }
-export const addUser = async (name: string, age: string) => {
+export const addProduct = async (name: string, price: number) => {
     try {
         const res = await fetch('http://localhost:3000', {
             method: 'POST',
@@ -17,7 +17,7 @@ export const addUser = async (name: string, age: string) => {
             },
             body: JSON.stringify({
                 name: name,
-                age: age
+                price: price
             })
         })
         if(!res.ok) throw new Error("Error Add User Res Is Not Ok");
@@ -26,7 +26,7 @@ export const addUser = async (name: string, age: string) => {
         console.error(error);
     }
 }
-export const deleteUser = async (userID: string) => {
+export const deleteProduct = async (userID: string) => {
     try {
         const res = await fetch(`http://localhost:3000/${userID}`, {
             method: 'DELETE',

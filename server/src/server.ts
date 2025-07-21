@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors'
 import { connectDB } from './config/db';
-import { UserModel } from './models/User';
+import { ProductModel } from './models/Product';
 
 const app = express();
 
@@ -15,35 +15,35 @@ app.use(express.json());
 
 
 app.get('/', async (req, res) => {
-    const users = await UserModel.find();
-    res.json(users);
+    const products = await ProductModel.find();
+    res.json(products);
 })
 app.post('/', async (req, res) => {
     try {
-        const { name, age} = req.body;
-        const newUser = new UserModel({ name, age });
+        const { name, price} = req.body;
+        const newProduct = new ProductModel({ name, price });
 
-        await newUser.save();
-        res.status(201).json({ message: 'user added successfuly', user: newUser });
+        await newProduct.save();
+        res.status(201).json({ message: 'product added successfuly', user: newProduct });
     } catch (error) {
         console.error(error);
-        res.status(400).json({ error: 'error: could not create user', details: error });
+        res.status(400).json({ error: 'error: could not create product', details: error });
     }
 })
 
-app.delete('/:userID', async (req, res) => {
+app.delete('/:productID', async (req, res) => {
     try {
-        const { userID } = req.params;
-        const deletedUser = await UserModel.findByIdAndDelete(userID);
+        const { productID } = req.params;
+        const deleteProduct = await ProductModel.findByIdAndDelete(productID);
 
-        if(!deletedUser){
-            return res.status(404).json({ message: 'User Not Fount' })
+        if(!deleteProduct){
+            return res.status(404).json({ message: 'Product Not Fount' })
         }
 
-        res.status(200).json({ message: 'user Deleted Successfully', deletedUser: deletedUser })
+        res.status(200).json({ message: 'Product Deleted Successfully', deleteProduct: deleteProduct })
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Error Deleting user', error })
+        res.status(500).json({ message: 'Error Deleting Pproduct', error })
     }
 })
 

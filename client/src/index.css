@@ -1,68 +1,60 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+#root{
+  width: 100%;
+  margin-top: 15vh;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+  flex-direction: column;
+  align-items: center;
+  .info{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
   }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+}
+form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 30px 20px;
+    box-shadow: 1px 1px 3px 2px #9e9e9ea6;
+    border-radius: 10px;
+    transition: .3s ease;
+    section{
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        transition: transform .2s, box-shadow .2s;
+        input{
+            width: 200px;
+            outline: none;
+            height: 30px;
+            padding-left: 10px;
+            border: 1px solid #9e9e9eb0;
+            border-radius: 3px;
+            box-shadow: 1px 1px 2px 2px #9e9e9e42;
+        }
+        input:focus, input:hover{
+            border-color: #3F51B5;
+        }
+    }
+    section:hover{
+        transform: translateY(-1px);
+    }
+    button{
+        width: 100px;
+        height: 34px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        background-color: #3F51B5;
+        color: white;
+        transition: .3s ease;
+        margin-top: 10px;
+    }
+    button:hover{
+        transform: scale(1.02);
+    }
+}
+form:hover{
+  transform: scale(1.01);
 }

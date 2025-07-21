@@ -2,15 +2,17 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import ShowMessage from './components/ShowMessage';
-import User from './components/User';
+import Product from './components/Product';
 
 const queryClient = new QueryClient();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
-      <User/>
-      <ShowMessage/>
+      <div className='info'>
+        <Product/>
+        <ShowMessage/>
+      </div>
     </QueryClientProvider>
   </StrictMode>,
 )
