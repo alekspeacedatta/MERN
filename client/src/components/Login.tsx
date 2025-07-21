@@ -8,10 +8,10 @@ const Login = () => {
 
     const { mutate: login } = useLogin({
         onSuccess: () => {
-            setMessage({ text: 'Login successful ✅', color: 'green' });
+            setMessage({ text: 'Login successful ', color: 'green' });
         },
         onError: () => {
-            setMessage({ text: 'Login failed ❌', color: 'red' });
+            setMessage({ text: 'Login failed ', color: 'red' });
         },
     }); 
 
