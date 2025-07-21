@@ -1,10 +1,15 @@
-import express from 'express';
+import jwt from 'jsonwebtoken';
 import cors from 'cors'
+import bcrypt from 'bcrypt'
+import dotenv from 'dotenv'
+import express from 'express';
 import { connectDB } from './config/db';
 import { ProductModel } from './models/Product';
 import { UserModel } from './models/User';
+
 const app = express();
 
+dotenv.config();
 app.use(cors({
     origin: 'http://localhost:5173',
     credentials: true
@@ -21,17 +26,50 @@ app.post('/register', async (req, res) => {
         if(exsistingUser){
             return res.status(400).json({ message: 'User already exsist' })
         }
+
+        const hashedPassword = await bcrypt.hash(password, 10);
         
-        const newUser = new UserModel({ name, email, password });
+        const newUser = new UserModel({ name, email, password: hashedPassword });
         await newUser.save();
 
-        res.status(201).json({ message: 'User Created Successfully', user: newUser });
+        const token = jwt.sign(
+            { userId: newUser._id, email: newUser.email },
+            process.env.JWT_SECRET!, 
+            { expiresIn: '7d' }
+        )
+
+        res.status(201).json({ message: 'User Created Successfully', user: newUser, token });
     } catch (error) {
         console.error(error)
         res.status(500).json({ message: 'Error Registering User', error })
     }
 })
-
+app.post('/login', async (req, res) => {
+    try {
+        const { email, password } = req.body;
+        const checkUser = await UserModel.findOne({ email });
+        if(!checkUser){
+            return res.status(400).json({ message: 'Incorect email or password' })
+        }
+        const isMatch = await bcrypt.compare(password, checkUser.password);
+        if(!isMatch){
+            return res.status(400).json({ message: 'Incorect email or password' })
+        }
+        const token = jwt.sign(
+            { userId: checkUser?._id, email: checkUser?.email },
+            process.env.JWT_SECRET!,
+            { expiresIn: '7d' }
+        )
+        res.status(200).json({
+            message: 'Login succesful',
+            checkUser,
+            token
+        })
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Login Failed', error });
+    }
+})
 app.get('/', async (req, res) => {
     const products = await ProductModel.find();
     res.json(products);

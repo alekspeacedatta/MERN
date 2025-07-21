@@ -21,7 +21,7 @@ const ShowProducts = () => {
                     <div className="product" key={product._id}>
                         <h2>Product Name - {product.name ? product.name : 'user not found'}</h2>
                         <p>Product Price - ${product.price}</p>
-                        <button onClick={() => {deleteProduct(product._id)}}>Delete User</button>
+                        <button onClick={() => {deleteProduct(product._id)}}>Delete Product</button>
                     </div>
                 ))}
             </div>

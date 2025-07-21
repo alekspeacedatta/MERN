@@ -60,6 +60,28 @@ export const register = async (name: string, email: string, password: string) =>
             })
         })
         if(!res.ok) throw new Error("Register Res Is Not Ok");
+        const data = await res.json();
+        localStorage.setItem('token', data.token);
+    } catch (error) {
+        console.error(error);
+    }
+}
+export const login = async (email: string, password: string ) => {
+    try {
+        const res = await fetch('http://localhost:3000/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: email,
+                password: password
+            })
+        })
+        if(!res.ok) throw new Error("Error: Login Res Is Not Ok");
+        const data = await res.json();
+        localStorage.setItem('token', data.token);
+        return data;
     } catch (error) {
         console.error(error);
     }

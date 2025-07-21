@@ -9,15 +9,15 @@ const AddProduct = () => {
 
     return (
         <>
-            <form onSubmit={(e) => { e.preventDefault(); addProduct({name, price}) }}> 
-                <section>
-                    <label htmlFor="">Name: </label>
-                    <input type="text" placeholder="enter your name"  onChange={(e) => {setName(e.target.value)}}/>
-                </section>
-                <section>
-                    <label htmlFor="">Price: </label>
-                    <input type="number" placeholder="enter your age" onChange={(e) => {setPrice(Number(e.target.value))}} />
-                </section>
+            <form onSubmit={(e) => { e.preventDefault(); addProduct({name, price}) }}>
+                    <section>
+                        <label htmlFor="">Name: </label>
+                        <input type="text" placeholder="enter your name"  onChange={(e) => {setName(e.target.value)}}/>
+                    </section>
+                    <section>
+                        <label htmlFor="">Price: </label>
+                        <input type="number" placeholder="enter your age" onChange={(e) => {setPrice(Number(e.target.value))}} />
+                    </section>
                 <button type="submit">Add Product</button>
             </form>
         </>

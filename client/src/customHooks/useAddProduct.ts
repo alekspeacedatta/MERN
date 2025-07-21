@@ -10,7 +10,7 @@ export const useaddProduct = () => {
     return useMutation({
         mutationFn: ({name, price} : ProductType) => addProduct(name, price),
         onSuccess: () => {
-            queryClient.invalidateQueries({ queryKey: ['users'] })
+            queryClient.invalidateQueries({ queryKey: ['products'] })
         },
         onError: (error) => {
             console.error("Error While Adding User", error.message);
