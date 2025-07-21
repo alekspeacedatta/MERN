@@ -10,7 +10,7 @@ export const fetchProducts = async () => {
 }
 export const addProduct = async (name: string, price: number) => {
     try {
-        const res = await fetch('http://localhost:3000', {
+        const res = await fetch('http://localhost:3000/api/product', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -28,7 +28,7 @@ export const addProduct = async (name: string, price: number) => {
 }
 export const deleteProduct = async (userID: string) => {
     try {
-        const res = await fetch(`http://localhost:3000/${userID}`, {
+        const res = await fetch(`http://localhost:3000/api/product/${userID}`, {
             method: 'DELETE',
         })
         if(!res.ok) throw new Error("Error: Delete User Res Is Not Ok");
@@ -48,7 +48,7 @@ export const fetchMessage = async () => {
 }
 export const register = async (name: string, email: string, password: string) => {
     try {
-        const res = await fetch('http://localhost:3000/register', {
+        const res = await fetch('http://localhost:3000/api/auth/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -68,7 +68,7 @@ export const register = async (name: string, email: string, password: string) =>
 }
 export const login = async (email: string, password: string ) => {
     try {
-        const res = await fetch('http://localhost:3000/login', {
+        const res = await fetch('http://localhost:3000/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
