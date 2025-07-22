@@ -35,8 +35,12 @@ export const addProduct = async (name: string, price: number) => {
 };
 export const deleteProduct = async (userID: string) => {
   try {
+    const token = localStorage.getItem('token')
     const res = await fetch(`http://localhost:3000/api/product/${userID}`, {
       method: "DELETE",
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
     });
     if (!res.ok) throw new Error("Error: Delete User Res Is Not Ok");
   } catch (error) {

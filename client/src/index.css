@@ -15,6 +15,12 @@
   display: flex;
   align-items: center;
   gap: 40px;
+  overflow-x: scroll;
+  width: 80vw;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 1px 1px 2px 2px #CCCCCC;
+;
   .product {
     padding: 10px;
     box-shadow: 1px 1px 3px 2px #9e9e9ea6;
