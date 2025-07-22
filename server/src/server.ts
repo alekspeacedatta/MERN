@@ -16,7 +16,6 @@ app.use(cors({
 }))
 
 app.use(express.json());
-// app.use(authenticateToken);
 app.use('/api/auth', authRoutes);
 app.use('/api/product', productRoutes);
 
