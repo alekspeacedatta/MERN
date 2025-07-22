@@ -5,7 +5,6 @@ const Login = () => {
     const [ email, setEmail ] = useState('')
     const [ password, setPassword ] = useState('')
     const [message, setMessage] = useState<{ text: string, color: string } | null>(null);
-    const [ token, setToken ] = useState<string | null>('');
 
     const { mutate: login, data: backMessage } = useLogin({
         onSuccess: () => {
@@ -27,14 +26,11 @@ const Login = () => {
         login({ email, password });
         setEmail('');
         setPassword('');
-        const token = localStorage.getItem('token');
-        setToken(token);
     }
     return (
         <form onSubmit={handleLogin}>
             {message && <p style={{ color: message.color }}>{message.text}</p>}
             {backMessage?.message}
-            {token}
             <section>
                 <label htmlFor="">Email: </label>
                 <input type="text" value={email} placeholder="enter your email" onChange={(e) => { setEmail(e.target.value) }} />

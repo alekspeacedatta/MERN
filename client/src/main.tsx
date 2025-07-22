@@ -8,6 +8,7 @@ import ShowProducts from './components/ShowProducts';
 import AddProduct from './components/AddProduct';
 import Login from './components/Login';
 import "./index.css"
+// import User from './components/User';
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,9 @@ createRoot(document.getElementById('root')!).render(
           <Login/>
         </div>
         <ShowMessage/>
+      </div>
+      <div>
+        {/* <User/>/ */}
       </div>
       <ReactQueryDevtools initialIsOpen={false}/>
     </QueryClientProvider>

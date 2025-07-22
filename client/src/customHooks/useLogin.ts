@@ -11,6 +11,7 @@ export const useLogin = (options?: {
         onSuccess: (data) => {
             console.log('login successful', data);
             queryClient.invalidateQueries({ queryKey: ['users'] });
+            queryClient.invalidateQueries({ queryKey: ['products'] });
             options?.onSuccess?.(data);
         },
         onError: (error) => {
