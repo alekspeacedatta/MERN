@@ -2,10 +2,8 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 import express from 'express';
 import { connectDB } from './config/db';
-import { ProductModel } from './models/Product';
 import authRoutes from './routes/auth'
 import productRoutes from './routes/product';
-import { authenticateToken } from './middleware';
 
 const app = express();
 
