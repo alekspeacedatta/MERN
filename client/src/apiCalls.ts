@@ -1,19 +1,27 @@
 export const fetchProducts = async () => {
     try {
-        const res = await fetch('http://localhost:3000');
+        const token = localStorage.getItem('token');
+        const res = await fetch('http://localhost:3000/api/product', {
+            method: 'GET',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
         if(!res.ok) throw new Error("Fetch Users Res Is Not Ok");
         const data = await res.json();
-        return data;
+        return data.products;
     } catch (error) {
         console.error(error);
     }
 }
 export const addProduct = async (name: string, price: number) => {
     try {
+        const token = localStorage.getItem('token');
         const res = await fetch('http://localhost:3000/api/product', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`
             },
             body: JSON.stringify({
                 name: name,
@@ -78,11 +86,12 @@ export const login = async (email: string, password: string ) => {
                 password: password
             })
         })
-        if(!res.ok) throw new Error("Error: Login Res Is Not Ok");
         const data = await res.json();
+        if(!res.ok) throw new Error( data.message || "Error: Login Res Is Not Ok");
         localStorage.setItem('token', data.token);
         return data;
     } catch (error) {
         console.error(error);
+        throw error;
     }
 }

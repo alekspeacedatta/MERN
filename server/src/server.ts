@@ -5,6 +5,7 @@ import { connectDB } from './config/db';
 import { ProductModel } from './models/Product';
 import authRoutes from './routes/auth'
 import productRoutes from './routes/product';
+import { authenticateToken } from './middleware';
 
 const app = express();
 
@@ -15,14 +16,9 @@ app.use(cors({
 }))
 
 app.use(express.json());
-
+// app.use(authenticateToken);
 app.use('/api/auth', authRoutes);
 app.use('/api/product', productRoutes);
-
-app.get('/', async (req, res) => {
-    const products = await ProductModel.find();
-    res.json(products);
-})
 
 
 app.get('/api/data', (req, res) => {

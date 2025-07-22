@@ -1,13 +1,38 @@
 import { Router, Request, Response } from 'express';
 import { ProductModel } from '../models/Product';
+import { authenticateToken } from '../middleware';
 
 const router = Router()
+interface AuthenticatedRequest extends Request {
+    user?: { id: string };
+}
 
 
-router.post('/', async (req: Request, res: Response) => {
+router.get('/', authenticateToken, async (req: AuthenticatedRequest, res) => {
+  try {
+    const userId = req.user?.id;
+
+    if (!userId) {
+      return res.status(400).json({ error: 'User not found in request' });
+    }
+
+    const products = await ProductModel.find({ userId }).sort({ createdAt: -1 });
+
+    res.json({ products });
+  } catch (error) {
+    console.error('Get products error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+router.post('/', authenticateToken,  async (req: AuthenticatedRequest, res: Response) => {
     try {
         const { name, price} = req.body;
-        const newProduct = new ProductModel({ name, price });
+
+        const userId = req.user?.id;
+        if(!userId) return res.status(401).json({ message: 'Unauthorized' });
+
+        const newProduct = new ProductModel({ name, price, userId });
 
         await newProduct.save();
         res.status(201).json({ message: 'product added successfuly', user: newProduct });
@@ -17,7 +42,7 @@ router.post('/', async (req: Request, res: Response) => {
     }
 })
 
-router.delete('/:productID', async (req: Request, res: Response) => {
+router.delete('/:productID', authenticateToken, async (req: Request, res: Response) => {
     try {
         const { productID } = req.params;
         const deleteProduct = await ProductModel.findByIdAndDelete(productID);

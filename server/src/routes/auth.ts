@@ -20,7 +20,7 @@ router.post('/register', async (req: Request, res: Response) => {
         await newUser.save();
 
         const token = jwt.sign(
-            { userId: newUser._id, email: newUser.email },
+            { id: newUser._id.toString(), email: newUser.email, name: newUser.name },
             process.env.JWT_SECRET!, 
             { expiresIn: '7d' }
         )
@@ -43,7 +43,7 @@ router.post('/login', async (req: Request , res: Response ) => {
             return res.status(400).json({ message: 'Incorect email or password' })
         }
         const token = jwt.sign(
-            { userId: checkUser?._id, email: checkUser?.email },
+            { id: checkUser._id.toString(), email: checkUser.email, name: checkUser.name },
             process.env.JWT_SECRET!,
             { expiresIn: '7d' }
         )

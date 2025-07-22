@@ -17,7 +17,7 @@ const ShowProducts = () => {
                 <h2>there is no Product</h2>
             )}
             <div className="products-container">
-                {products.map((product : any) => (
+                {products.map((product : any ) => (
                     <div className="product" key={product._id}>
                         <h2>Product Name - {product.name ? product.name : 'user not found'}</h2>
                         <p>Product Price - ${product.price}</p>
