@@ -9,7 +9,7 @@ const app = express();
 
 dotenv.config();
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'http://localhost:5174',
     credentials: true
 }))
 
@@ -23,6 +23,6 @@ app.get('/api/data', (req, res) => {
 });
 
 connectDB();
-app.listen(3000, () => {
-    console.log('server runs on http://localhost:3000');
+app.listen(3100, () => {
+    console.log('server runs on http://localhost:3100');
 })

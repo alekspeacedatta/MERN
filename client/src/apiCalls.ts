@@ -1,7 +1,9 @@
+const BASE_URL = 'http://localhost:3100';
+
 export const fetchProducts = async () => {
   try {
     const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:3000/api/product", {
+    const res = await fetch(`${BASE_URL}/api/product`, {
       method: "GET",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -17,7 +19,7 @@ export const fetchProducts = async () => {
 export const addProduct = async (name: string, price: number) => {
   try {
     const token = localStorage.getItem("token");
-    const res = await fetch("http://localhost:3000/api/product", {
+    const res = await fetch(`${BASE_URL}/api/product`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +38,7 @@ export const addProduct = async (name: string, price: number) => {
 export const deleteProduct = async (userID: string) => {
   try {
     const token = localStorage.getItem('token')
-    const res = await fetch(`http://localhost:3000/api/product/${userID}`, {
+    const res = await fetch(`${BASE_URL}/api/product/${userID}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${token}`
@@ -49,7 +51,7 @@ export const deleteProduct = async (userID: string) => {
 };
 export const fetchMessage = async () => {
   try {
-    const res = await fetch("http://localhost:3000/api/data");
+    const res = await fetch(`${BASE_URL}/api/data`);
     if (!res.ok) throw new Error("Error: Fetch Message Res Is Not Ok");
     const data = await res.json();
     return data;
@@ -63,7 +65,7 @@ export const register = async (
   password: string,
 ) => {
   try {
-    const res = await fetch("http://localhost:3000/api/auth/register", {
+    const res = await fetch(`${BASE_URL}/api/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +85,7 @@ export const register = async (
 };
 export const login = async (email: string, password: string) => {
   try {
-    const res = await fetch("http://localhost:3000/api/auth/login", {
+    const res = await fetch(`${BASE_URL}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

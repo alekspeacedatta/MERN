@@ -19,7 +19,7 @@ const AddProduct = () => {
           <label htmlFor="">Name: </label>
           <input
             type="text"
-            placeholder="enter your name"
+            placeholder="enter product name"
             onChange={(e) => {
               setName(e.target.value);
             }}
@@ -29,7 +29,7 @@ const AddProduct = () => {
           <label htmlFor="">Price: </label>
           <input
             type="number"
-            placeholder="enter your age"
+            placeholder="enter product price"
             onChange={(e) => {
               setPrice(Number(e.target.value));
             }}
