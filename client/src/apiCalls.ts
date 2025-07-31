@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:3100';
+const BASE_URL = "http://localhost:3100";
 
 export const fetchProducts = async () => {
   try {
@@ -37,12 +37,12 @@ export const addProduct = async (name: string, price: number) => {
 };
 export const deleteProduct = async (userID: string) => {
   try {
-    const token = localStorage.getItem('token')
+    const token = localStorage.getItem("token");
     const res = await fetch(`${BASE_URL}/api/product/${userID}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${token}`
-      }
+        Authorization: `Bearer ${token}`,
+      },
     });
     if (!res.ok) throw new Error("Error: Delete User Res Is Not Ok");
   } catch (error) {
@@ -105,17 +105,18 @@ export const login = async (email: string, password: string) => {
   }
 };
 export const fetchUser = async () => {
-    try {
-        const token = localStorage.getItem('token');
-        const res = await fetch(`${BASE_URL}/api/auth/me`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        if(!res.ok) throw new Error("Error fetchUser Res is Not Ok");
-        const data = await res.json();
-        return data;
-    } catch (error) {
-        console.error(error);
-    }
-}
+  try {
+    const token = localStorage.getItem("token");
+    const res = await fetch(`${BASE_URL}/api/auth/me`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    if (!res.ok) throw new Error("Error fetchUser Res is Not Ok");
+    const data = await res.json();
+    const user = data.user;
+    return user;
+  } catch (error) {
+    console.error(error);
+  }
+};

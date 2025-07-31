@@ -7,7 +7,7 @@ interface UserType {
 }
 export const useRegister = () => {
   const queryClient = useQueryClient();
-  
+
   return useMutation({
     mutationFn: ({ name, email, password }: UserType) =>
       register(name, email, password),

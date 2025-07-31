@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import { authenticateToken } from '../middleware';
 const router = Router();
 interface CustomRequest extends Request {
-  user?: { userId: string, email: string };
+  user?: { id: string, email: string };
 }
 
 router.post('/register', async (req: Request, res: Response) => {
@@ -62,7 +62,7 @@ router.post('/login', async (req: Request , res: Response ) => {
 })
 router.get('/me', authenticateToken, async (req: CustomRequest, res: Response) => {
   try {
-    const userId = req.user?.userId;
+    const userId = req.user?.id;
 
     if (!userId) {
       return res.status(400).json({ message: 'User not found in token' });

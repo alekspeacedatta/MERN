@@ -1,15 +1,19 @@
-import { useUser } from "../customHooks/useUser"
+import { useUser } from "../customHooks/useUser";
 const User = () => {
-    const { data: user, isError, isLoading, error } = useUser();
+  const { data: user, isError, isLoading, error, refetch } = useUser();
 
-    if(isLoading) return <p>Loading</p>
-    if(isError) return <p>Error: {error.message} </p>
+  if (isLoading) return <p>Loading</p>;
+  if (isError) return <p>Error: {error.message} </p>;
 
-    return (
-        <div className="user">
-            <h2>User name: {user.name}</h2>
-            <h2>User email: {user.email}</h2>
-        </div>
-    )
-}
-export default User
+  return (
+    <div className="user-section">
+      <div className="user-content">
+        <section>
+          <h2>User name: {user.name}</h2>
+          <h2>User email: {user.email}</h2>
+        </section>
+      </div>
+    </div>
+  );
+};
+export default User;

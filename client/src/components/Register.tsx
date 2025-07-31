@@ -11,7 +11,7 @@ const Register = () => {
   const handleRegister = (e: any) => {
     e.preventDefault();
     register({ name, email, password });
-    navigate('/');
+    navigate("/");
   };
   return (
     <div className="form-section">

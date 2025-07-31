@@ -12,11 +12,15 @@ const Login = () => {
   } | null>(null);
 
   const { mutate: login, data: backMessage } = useLogin({
-    onSuccess: () => {
-      setMessage({ text: "Login successful ", color: "green" });
-      setInterval(() => {
+    onSuccess: (data) => {
+      localStorage.setItem("token", data.token);
+
+      setMessage({ text: "Login successful", color: "green" });
+
+      setTimeout(() => {
         setMessage(null);
-      }, 1000);
+        navigate("/user");
+      }, 50);
     },
     onError: (error: any) => {
       setMessage({ text: error.message || "login failed", color: "red" });
@@ -29,38 +33,37 @@ const Login = () => {
   const handleLogin = (e: any) => {
     e.preventDefault();
     login({ email, password });
-    navigate('/');
   };
   return (
     <div className="form-section">
       <h2>Login</h2>
-    <form onSubmit={handleLogin}>
-      {message && <p style={{ color: message.color }}>{message.text}</p>}
-      {backMessage?.message}
-      <section>
-        <label htmlFor="">Email: </label>
-        <input
-          type="text"
-          value={email}
-          placeholder="enter your email"
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-        />
-      </section>
-      <section>
-        <label htmlFor="">Password: </label>
-        <input
-          type="text"
-          value={password}
-          placeholder="enter your password"
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-        />
-      </section>
-      <button type="submit">Login</button>
-    </form>
+      <form onSubmit={handleLogin}>
+        {message && <p style={{ color: message.color }}>{message.text}</p>}
+        {backMessage?.message}
+        <section>
+          <label htmlFor="">Email: </label>
+          <input
+            type="text"
+            value={email}
+            placeholder="enter your email"
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+        </section>
+        <section>
+          <label htmlFor="">Password: </label>
+          <input
+            type="text"
+            value={password}
+            placeholder="enter your password"
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+          />
+        </section>
+        <button type="submit">Login</button>
+      </form>
     </div>
   );
 };
