@@ -3,12 +3,14 @@ import { addProduct } from "../apiCalls";
 interface ProductType {
   name: string;
   price: number;
+  endpoint: string | null;
 }
 export const useaddProduct = () => {
   const queryClient = useQueryClient();
 
   return useMutation({
-    mutationFn: ({ name, price }: ProductType) => addProduct(name, price),
+    mutationFn: ({ name, price, endpoint }: ProductType) =>
+      addProduct(name, price, endpoint),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
     },

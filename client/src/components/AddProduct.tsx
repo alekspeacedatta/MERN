@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useaddProduct } from "../customHooks/useAddProduct";
 
-const AddProduct = () => {
+const AddProduct = ({ endpoint }: { endpoint: string | null }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
 
@@ -12,7 +12,7 @@ const AddProduct = () => {
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          addProduct({ name, price });
+          addProduct({ name, price, endpoint });
         }}
       >
         <section>

@@ -1,6 +1,6 @@
 import { useUser } from "../customHooks/useUser";
 const User = () => {
-  const { data: user, isError, isLoading, error, refetch } = useUser();
+  const { data: user, isError, isLoading, error } = useUser();
 
   if (isLoading) return <p>Loading</p>;
   if (isError) return <p>Error: {error.message} </p>;
