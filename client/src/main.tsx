@@ -8,6 +8,9 @@ import ShowProducts from "./components/ShowProducts";
 import AddProduct from "./components/AddProduct";
 import Login from "./components/Login";
 import "./index.css";
+import App from "./components/App";
+import Header from "./components/Header";
+import { BrowserRouter } from "react-router-dom";
 // import User from './components/User';
 
 const queryClient = new QueryClient();
@@ -15,6 +18,10 @@ const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <App/>
+      </BrowserRouter>
+      {/* <Products/>
       <div className="info">
         <ShowProducts />
         <div className="forms">
@@ -24,7 +31,7 @@ createRoot(document.getElementById("root")!).render(
         </div>
         <ShowMessage />
       </div>
-      <div>{/* <User/>/ */}</div>
+      <div><User/>/</div> */}
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </StrictMode>,

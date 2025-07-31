@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useLogin } from "../customHooks/useLogin";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState<{
@@ -27,10 +29,11 @@ const Login = () => {
   const handleLogin = (e: any) => {
     e.preventDefault();
     login({ email, password });
-    setEmail("");
-    setPassword("");
+    navigate('/');
   };
   return (
+    <div className="form-section">
+      <h2>Login</h2>
     <form onSubmit={handleLogin}>
       {message && <p style={{ color: message.color }}>{message.text}</p>}
       {backMessage?.message}
@@ -58,6 +61,7 @@ const Login = () => {
       </section>
       <button type="submit">Login</button>
     </form>
+    </div>
   );
 };
 export default Login;

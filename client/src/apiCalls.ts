@@ -104,18 +104,18 @@ export const login = async (email: string, password: string) => {
     throw error;
   }
 };
-// export const fetchUser = async () => {
-//     try {
-//         const token = localStorage.getItem('token');
-//         const res = await fetch('http://localhost:3000/auth/me', {
-//             headers: {
-//                 Authorization: `Bearer ${token}`
-//             }
-//         });
-//         if(!res.ok) throw new Error("Error fetchUser Res is Not Ok");
-//         const data = await res.json();
-//         return data;
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+export const fetchUser = async () => {
+    try {
+        const token = localStorage.getItem('token');
+        const res = await fetch(`${BASE_URL}/api/auth/me`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        if(!res.ok) throw new Error("Error fetchUser Res is Not Ok");
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.error(error);
+    }
+}
