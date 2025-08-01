@@ -1,6 +1,5 @@
 import { useAddProduct } from "../customHooks/useAddProduct";
 import { useProducts } from "../customHooks/useProducts";
-import UserCartItems from "./UserCartItems";
 const Products = ({ title }: { title: string }) => {
   const { data: products, isLoading, isError, error } = useProducts("");
   const { mutate: addProduct } = useAddProduct();
@@ -9,7 +8,6 @@ const Products = ({ title }: { title: string }) => {
   if (isError) return <p>Error: {error.message}</p>;
   return (
     <div className="products-section">
-      <UserCartItems endpoint="/user-product" />
       <div className="products-content">
         <h2>{title}</h2>
         <div className="products-container">
