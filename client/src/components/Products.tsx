@@ -1,20 +1,15 @@
-import { useaddProduct } from "../customHooks/useAddProduct";
+import { useAddProduct } from "../customHooks/useAddProduct";
 import { useProducts } from "../customHooks/useProducts";
-
-const Products = ({
-  endpoint,
-  title,
-}: {
-  endpoint: string | null;
-  title: string;
-}) => {
-  const { data: products, isLoading, isError, error } = useProducts(endpoint);
-  const { mutate: addProduct } = useaddProduct();
+import UserCartItems from "./UserCartItems";
+const Products = ({ title }: { title: string }) => {
+  const { data: products, isLoading, isError, error } = useProducts("");
+  const { mutate: addProduct } = useAddProduct();
 
   if (isLoading) return <p>Loading...</p>;
   if (isError) return <p>Error: {error.message}</p>;
   return (
     <div className="products-section">
+      <UserCartItems endpoint="/user-product" />
       <div className="products-content">
         <h2>{title}</h2>
         <div className="products-container">

@@ -5,6 +5,7 @@ import Login from "./Login";
 import Register from "./Register";
 import User from "./User";
 import AddProduct from "./AddProduct";
+import UserCartItems from "./UserCartItems";
 const App = () => {
   return (
     <>
@@ -14,8 +15,7 @@ const App = () => {
           path="/"
           element={
             <>
-              <Products endpoint="" title="all products" />
-              <Products endpoint="/user-product" title="User cart" />{" "}
+              <Products title="all products" />
             </>
           }
         />
@@ -23,7 +23,6 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/user" element={<User />} />
       </Routes>
-      <AddProduct endpoint="" />
     </>
   );
 };

@@ -95,6 +95,11 @@ header {
 }
 .products-section {
   padding: 150px 0;
+  .user-cart{
+    position: absolute;
+    overflow-y: scroll;
+    height: 70vh;
+  }
   .products-content {
     max-width: 70vw;
     margin: 0 auto;

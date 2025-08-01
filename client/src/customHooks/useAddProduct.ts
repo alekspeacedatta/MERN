@@ -5,7 +5,7 @@ interface ProductType {
   price: number;
   endpoint: string | null;
 }
-export const useaddProduct = () => {
+export const useAddProduct = () => {
   const queryClient = useQueryClient();
 
   return useMutation({

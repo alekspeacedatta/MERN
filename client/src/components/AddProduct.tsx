@@ -1,11 +1,11 @@
 import { useState } from "react";
-import { useaddProduct } from "../customHooks/useAddProduct";
+import { useAddProduct } from "../customHooks/useAddProduct";
 
 const AddProduct = ({ endpoint }: { endpoint: string | null }) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
 
-  const { mutate: addProduct } = useaddProduct();
+  const { mutate: addProduct } = useAddProduct();
 
   return (
     <>
