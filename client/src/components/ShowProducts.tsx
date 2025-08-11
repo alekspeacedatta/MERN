@@ -2,7 +2,7 @@ import { useDeleteProduct } from "../customHooks/useDeleteProduct";
 import { useProducts } from "../customHooks/useProducts";
 
 const ShowProducts = () => {
-  const { data: products, isLoading, error } = useProducts();
+  const { data: products, isLoading, error } = useProducts('');
   const { mutate: deleteProduct } = useDeleteProduct();
 
   if (isLoading) return <p>Loading for products...</p>;
