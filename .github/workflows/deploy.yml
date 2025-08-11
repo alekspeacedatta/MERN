@@ -36,4 +36,4 @@ jobs:
 
     - name: Deploy to server
       run: |
-        ssh -o StrictHostKeyChecking=no user@your-server-ip 'bash -s' < ./deploy.sh
+        ssh -o StrictHostKeyChecking=no ubuntu@123.45.67.89 'bash -s' < ./deploy.sh
