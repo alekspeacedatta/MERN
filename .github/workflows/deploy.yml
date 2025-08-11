@@ -30,7 +30,7 @@ jobs:
         npm run build
 
     - name: Setup SSH agent and deploy
-      uses: webfactory/ssh-agent@v0.8.1
+      uses: webfactory/ssh-agent@v0.8.0
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
