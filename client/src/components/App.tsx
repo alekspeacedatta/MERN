@@ -5,6 +5,7 @@ import Login from "./Login";
 import Register from "./Register";
 import User from "./User";
 import UserCartItems from "./UserCartItems";
+import AddProduct from "./AddProduct";
 const App = () => {
   return (
     <>
@@ -22,6 +23,7 @@ const App = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route path="/user" element={<User />} />
+        <Route path="/add" element={<AddProduct endpoint='' />} />
       </Routes>
     </>
   );
