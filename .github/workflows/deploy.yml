@@ -1,0 +1,39 @@
+name: Deploy MERN App
+
+on:
+  push:
+    branches:
+      - master  # or main if that’s your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '16'  # or your project’s Node version
+
+    - name: Install server dependencies
+      run: |
+        cd server
+        npm install
+
+    - name: Install client dependencies and build
+      run: |
+        cd client
+        npm install
+        npm run build
+
+    - name: Setup SSH agent and deploy
+      uses: webfactory/ssh-agent@v0.8.1
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Deploy to server
+      run: |
+        ssh -o StrictHostKeyChecking=no user@your-server-ip 'bash -s' < ./deploy.sh
