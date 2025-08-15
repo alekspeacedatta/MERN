@@ -1,4 +1,5 @@
 import { useUser } from "../customHooks/useUser";
+import ProfileCart from "./ProfileCart";
 const User = () => {
   const { data: user, isError, isLoading, error } = useUser();
 
@@ -12,6 +13,7 @@ const User = () => {
           <h2>User name: {user.name}</h2>
           <h2>User email: {user.email}</h2>
         </section>
+        <ProfileCart endpoint="/user-product" />
       </div>
     </div>
   );
