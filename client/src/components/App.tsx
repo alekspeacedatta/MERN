@@ -6,6 +6,7 @@ import Register from "./Register";
 import User from "./User";
 import UserCartItems from "./UserCartItems";
 import AddProduct from "./AddProduct";
+import Footer from "./Footer";
 const App = () => {
   return (
     <>
@@ -25,6 +26,7 @@ const App = () => {
         <Route path="/user" element={<User />} />
         <Route path="/add" element={<AddProduct endpoint='' />} />
       </Routes>
+      <Footer/>
     </>
   );
 };
