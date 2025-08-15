@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:3100";
+const BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:3100";
 
 export const fetchProducts = async (endpoint: string | null) => {
   try {
