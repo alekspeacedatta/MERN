@@ -52,7 +52,8 @@ router.post('/user-product', authenticateToken,  async (req: AuthenticatedReques
 
         const userId = req.user?.id;
         if(!userId) return res.status(401).json({ message: 'Unauthorized' });
-
+        const exsistingProduct = await UserProductModel.findOne({ name: name, userId: userId });
+        if(exsistingProduct) return res.status(400).json({ message: `Product already added to cart` })
         const newProduct = new UserProductModel({ name, price, userId });
 
         await newProduct.save();
